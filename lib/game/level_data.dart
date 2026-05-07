@@ -21,6 +21,7 @@ class Tube {
   Tube(this.balls);
   Tube clone() => Tube(List.of(balls));
   bool get isEmpty => balls.isEmpty;
+  bool get isNotEmpty => balls.isNotEmpty;
   bool get isFull => balls.length >= kTubeCapacity;
   Color? get top => balls.isEmpty ? null : balls.last;
   bool get sorted =>
