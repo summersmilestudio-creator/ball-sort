@@ -193,4 +193,20 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get notifBody => '공 정리 한 판 어때요? 🎯';
+
+  @override
+  String get coinsSectionTitle => '코인';
+
+  @override
+  String watchAdForCoins(int amount) {
+    return '광고 보기 +$amount';
+  }
+
+  @override
+  String coinsAdded(int amount) {
+    return '+$amount 코인!';
+  }
+
+  @override
+  String get storeUnavailable => '상점을 이용할 수 없어요';
 }

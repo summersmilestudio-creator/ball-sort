@@ -202,4 +202,20 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get notifBody => 'Que tal uma partida rápida organizando bolas? 🎯';
+
+  @override
+  String get coinsSectionTitle => 'Moedas';
+
+  @override
+  String watchAdForCoins(int amount) {
+    return 'Ver anúncio +$amount';
+  }
+
+  @override
+  String coinsAdded(int amount) {
+    return '+$amount moedas!';
+  }
+
+  @override
+  String get storeUnavailable => 'Loja indisponível';
 }

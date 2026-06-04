@@ -51,5 +51,9 @@
   "skinOcean": "Oceano",
   "skinSunset": "Pôr do sol",
   "notifTitle": "Ball Sort Puzzle",
-  "notifBody": "Que tal uma partida rápida organizando bolas? 🎯"
+  "notifBody": "Que tal uma partida rápida organizando bolas? 🎯",
+  "coinsSectionTitle": "Moedas",
+  "watchAdForCoins": "Ver anúncio +{amount}",
+  "coinsAdded": "+{amount} moedas!",
+  "storeUnavailable": "Loja indisponível"
 }

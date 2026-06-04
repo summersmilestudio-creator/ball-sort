@@ -202,4 +202,20 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String get notifBody => 'O partidă rapidă de sortare bile? 🎯';
+
+  @override
+  String get coinsSectionTitle => 'Monede';
+
+  @override
+  String watchAdForCoins(int amount) {
+    return 'Vezi reclamă +$amount';
+  }
+
+  @override
+  String coinsAdded(int amount) {
+    return '+$amount monede!';
+  }
+
+  @override
+  String get storeUnavailable => 'Magazin indisponibil';
 }

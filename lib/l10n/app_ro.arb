@@ -215,5 +215,25 @@
   "@notifTitle": {},
 
   "notifBody": "O partidă rapidă de sortare bile? 🎯",
-  "@notifBody": {}
+  "@notifBody": {},
+
+  "coinsSectionTitle": "Monede",
+  "@coinsSectionTitle": {},
+
+  "watchAdForCoins": "Vezi reclamă +{amount}",
+  "@watchAdForCoins": {
+    "placeholders": {
+      "amount": { "type": "int" }
+    }
+  },
+
+  "coinsAdded": "+{amount} monede!",
+  "@coinsAdded": {
+    "placeholders": {
+      "amount": { "type": "int" }
+    }
+  },
+
+  "storeUnavailable": "Magazin indisponibil",
+  "@storeUnavailable": {}
 }

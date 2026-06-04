@@ -51,5 +51,9 @@
   "skinOcean": "Océan",
   "skinSunset": "Coucher de soleil",
   "notifTitle": "Ball Sort Puzzle",
-  "notifBody": "Une petite partie de tri de billes ? 🎯"
+  "notifBody": "Une petite partie de tri de billes ? 🎯",
+  "coinsSectionTitle": "Pièces",
+  "watchAdForCoins": "Voir une pub +{amount}",
+  "coinsAdded": "+{amount} pièces !",
+  "storeUnavailable": "Boutique indisponible"
 }

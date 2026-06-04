@@ -51,5 +51,9 @@
   "skinOcean": "Ocean",
   "skinSunset": "Sunset",
   "notifTitle": "Ball Sort Puzzle",
-  "notifBody": "Up for a quick ball-sorting round? 🎯"
+  "notifBody": "Up for a quick ball-sorting round? 🎯",
+  "coinsSectionTitle": "Coins",
+  "watchAdForCoins": "Watch ad +{amount}",
+  "coinsAdded": "+{amount} coins!",
+  "storeUnavailable": "Store unavailable"
 }

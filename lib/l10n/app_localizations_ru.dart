@@ -204,4 +204,20 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get notifBody => 'Быстрая партия по сортировке шариков? 🎯';
+
+  @override
+  String get coinsSectionTitle => 'Монеты';
+
+  @override
+  String watchAdForCoins(int amount) {
+    return 'Смотреть рекламу +$amount';
+  }
+
+  @override
+  String coinsAdded(int amount) {
+    return '+$amount монет!';
+  }
+
+  @override
+  String get storeUnavailable => 'Магазин недоступен';
 }

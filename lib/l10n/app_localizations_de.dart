@@ -202,4 +202,20 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get notifBody => 'Lust auf eine schnelle Runde Kugelsortieren? 🎯';
+
+  @override
+  String get coinsSectionTitle => 'Münzen';
+
+  @override
+  String watchAdForCoins(int amount) {
+    return 'Werbung ansehen +$amount';
+  }
+
+  @override
+  String coinsAdded(int amount) {
+    return '+$amount Münzen!';
+  }
+
+  @override
+  String get storeUnavailable => 'Shop nicht verfügbar';
 }

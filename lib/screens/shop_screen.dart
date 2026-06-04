@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:ball_sort/l10n/app_localizations.dart';
 import '../services/meta_service.dart';
 import '../services/audio_service.dart';
+import '../services/ads_service.dart';
+import '../services/purchase_service.dart';
 import '../game/skins.dart';
 
 const _accent = Color(0xFFFF6F00);
+
+/// Coins given for watching a single rewarded ad in the shop.
+const _adReward = 25;
 
 /// Localized display name for a skin (the model stores only a stable id).
 String _skinName(AppLocalizations l10n, BallSkin skin) {
@@ -31,6 +36,46 @@ class ShopScreen extends StatefulWidget {
 }
 
 class _ShopScreenState extends State<ShopScreen> {
+  bool _busy = false;
+
+  Future<void> _onWatchAd() async {
+    if (_busy) return;
+    setState(() => _busy = true);
+    final earned = await AdsService.instance.showRewarded();
+    if (earned) {
+      await MetaService.instance.addCoins(_adReward);
+      AudioService.instance.coin();
+    }
+    if (!mounted) {
+      _busy = false;
+      return;
+    }
+    setState(() => _busy = false);
+    if (earned) {
+      final l10n = AppLocalizations.of(context)!;
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(l10n.coinsAdded(_adReward)),
+          duration: const Duration(seconds: 2)));
+    }
+  }
+
+  Future<void> _onBuyPack(CoinPack pack) async {
+    if (_busy) return;
+    setState(() => _busy = true);
+    final ok = await PurchaseService.instance.buy(pack.id);
+    if (!mounted) {
+      _busy = false;
+      return;
+    }
+    setState(() => _busy = false);
+    if (!ok) {
+      final l10n = AppLocalizations.of(context)!;
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(l10n.storeUnavailable),
+          duration: const Duration(seconds: 2)));
+    }
+  }
+
   Future<void> _onTapSkin(BallSkin skin) async {
     final l10n = AppLocalizations.of(context)!;
     final meta = MetaService.instance;
@@ -114,28 +159,152 @@ class _ShopScreenState extends State<ShopScreen> {
       ),
       body: ListenableBuilder(
         listenable: meta,
-        builder: (context, _) => GridView.builder(
+        builder: (context, _) => ListView(
           padding: const EdgeInsets.all(16),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: 0.82,
-            crossAxisSpacing: 14,
-            mainAxisSpacing: 14,
-          ),
-          itemCount: ballSkins.length,
-          itemBuilder: (ctx, i) {
-            final skin = ballSkins[i];
-            final unlocked = meta.isUnlocked(skin.id);
-            final equipped = meta.equipped == skin.id;
-            return _SkinCard(
-              skin: skin,
-              name: _skinName(AppLocalizations.of(context)!, skin),
-              unlocked: unlocked,
-              equipped: equipped,
-              onTap: () => _onTapSkin(skin),
-            );
-          },
+          children: [
+            _coinsSection(context),
+            const SizedBox(height: 24),
+            GridView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              padding: EdgeInsets.zero,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 0.82,
+                crossAxisSpacing: 14,
+                mainAxisSpacing: 14,
+              ),
+              itemCount: ballSkins.length,
+              itemBuilder: (ctx, i) {
+                final skin = ballSkins[i];
+                final unlocked = meta.isUnlocked(skin.id);
+                final equipped = meta.equipped == skin.id;
+                return _SkinCard(
+                  skin: skin,
+                  name: _skinName(AppLocalizations.of(context)!, skin),
+                  unlocked: unlocked,
+                  equipped: equipped,
+                  onTap: () => _onTapSkin(skin),
+                );
+              },
+            ),
+          ],
         ),
+      ),
+    );
+  }
+
+  Widget _coinsSection(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final svc = PurchaseService.instance;
+    final hasStore = svc.coinProducts.isNotEmpty;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(l10n.coinsSectionTitle,
+            style: const TextStyle(
+                color: Colors.white70,
+                fontSize: 14,
+                fontWeight: FontWeight.w800,
+                letterSpacing: 2)),
+        const SizedBox(height: 12),
+        // Watch ad for coins.
+        _RowTile(
+          label: l10n.watchAdForCoins(_adReward),
+          icon: Icons.play_circle_fill_rounded,
+          iconColors: const [Color(0xFF42A5F5), Color(0xFF1565C0)],
+          buttonLabel: '+$_adReward',
+          buttonColor: const Color(0xFF42A5F5),
+          enabled: !_busy,
+          onTap: _onWatchAd,
+        ),
+        const SizedBox(height: 10),
+        // Coin packs.
+        for (final pack in PurchaseService.coinPacks)
+          Padding(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: _RowTile(
+              label: '+${pack.total}',
+              icon: Icons.monetization_on_rounded,
+              iconColors: const [Color(0xFFFFD740), Color(0xFFFF6F00)],
+              buttonLabel: svc.productFor(pack.id)?.price ??
+                  (hasStore ? l10n.storeUnavailable : '—'),
+              buttonColor: const Color(0xFFFF6F00),
+              enabled: !_busy && svc.productFor(pack.id) != null,
+              onTap: () => _onBuyPack(pack),
+            ),
+          ),
+        if (!hasStore)
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 4),
+            child: Text(l10n.storeUnavailable,
+                style: const TextStyle(color: Colors.white54, fontSize: 12)),
+          ),
+      ],
+    );
+  }
+}
+
+/// A horizontal coins-section row: coin/ad icon, label, and a buy/watch button.
+class _RowTile extends StatelessWidget {
+  final String label;
+  final IconData icon;
+  final List<Color> iconColors;
+  final String buttonLabel;
+  final Color buttonColor;
+  final bool enabled;
+  final VoidCallback onTap;
+  const _RowTile({
+    required this.label,
+    required this.icon,
+    required this.iconColors,
+    required this.buttonLabel,
+    required this.buttonColor,
+    required this.enabled,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.black.withValues(alpha: 0.3),
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: Colors.white.withValues(alpha: 0.12)),
+      ),
+      padding: const EdgeInsets.all(12),
+      child: Row(
+        children: [
+          Container(
+            width: 48,
+            height: 48,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(colors: iconColors),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Icon(icon, color: Colors.white, size: 28),
+          ),
+          const SizedBox(width: 14),
+          Expanded(
+            child: Text(label,
+                style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 17,
+                    fontWeight: FontWeight.w900)),
+          ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: buttonColor,
+              foregroundColor: Colors.white,
+              disabledBackgroundColor: Colors.white.withValues(alpha: 0.12),
+              disabledForegroundColor: Colors.white38,
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              textStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w900),
+            ),
+            onPressed: enabled ? onTap : null,
+            child: Text(buttonLabel),
+          ),
+        ],
       ),
     );
   }

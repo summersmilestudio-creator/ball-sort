@@ -202,4 +202,20 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get notifBody => 'Une petite partie de tri de billes ? 🎯';
+
+  @override
+  String get coinsSectionTitle => 'Pièces';
+
+  @override
+  String watchAdForCoins(int amount) {
+    return 'Voir une pub +$amount';
+  }
+
+  @override
+  String coinsAdded(int amount) {
+    return '+$amount pièces !';
+  }
+
+  @override
+  String get storeUnavailable => 'Boutique indisponible';
 }

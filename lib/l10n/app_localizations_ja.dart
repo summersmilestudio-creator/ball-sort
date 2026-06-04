@@ -193,4 +193,20 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get notifBody => 'サクッとボール仕分けで一勝負しませんか？🎯';
+
+  @override
+  String get coinsSectionTitle => 'コイン';
+
+  @override
+  String watchAdForCoins(int amount) {
+    return '広告を見る +$amount';
+  }
+
+  @override
+  String coinsAdded(int amount) {
+    return '+$amount コイン！';
+  }
+
+  @override
+  String get storeUnavailable => 'ストアを利用できません';
 }

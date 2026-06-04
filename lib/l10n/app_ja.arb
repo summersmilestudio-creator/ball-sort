@@ -51,5 +51,9 @@
   "skinOcean": "オーシャン",
   "skinSunset": "サンセット",
   "notifTitle": "Ball Sort Puzzle",
-  "notifBody": "サクッとボール仕分けで一勝負しませんか？🎯"
+  "notifBody": "サクッとボール仕分けで一勝負しませんか？🎯",
+  "coinsSectionTitle": "コイン",
+  "watchAdForCoins": "広告を見る +{amount}",
+  "coinsAdded": "+{amount} コイン！",
+  "storeUnavailable": "ストアを利用できません"
 }

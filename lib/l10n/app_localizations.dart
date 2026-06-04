@@ -427,6 +427,30 @@ abstract class AppLocalizations {
   /// In ro, this message translates to:
   /// **'O partidă rapidă de sortare bile? 🎯'**
   String get notifBody;
+
+  /// No description provided for @coinsSectionTitle.
+  ///
+  /// In ro, this message translates to:
+  /// **'Monede'**
+  String get coinsSectionTitle;
+
+  /// No description provided for @watchAdForCoins.
+  ///
+  /// In ro, this message translates to:
+  /// **'Vezi reclamă +{amount}'**
+  String watchAdForCoins(int amount);
+
+  /// No description provided for @coinsAdded.
+  ///
+  /// In ro, this message translates to:
+  /// **'+{amount} monede!'**
+  String coinsAdded(int amount);
+
+  /// No description provided for @storeUnavailable.
+  ///
+  /// In ro, this message translates to:
+  /// **'Magazin indisponibil'**
+  String get storeUnavailable;
 }
 
 class _AppLocalizationsDelegate

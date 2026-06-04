@@ -51,5 +51,9 @@
   "skinOcean": "오션",
   "skinSunset": "선셋",
   "notifTitle": "Ball Sort Puzzle",
-  "notifBody": "공 정리 한 판 어때요? 🎯"
+  "notifBody": "공 정리 한 판 어때요? 🎯",
+  "coinsSectionTitle": "코인",
+  "watchAdForCoins": "광고 보기 +{amount}",
+  "coinsAdded": "+{amount} 코인!",
+  "storeUnavailable": "상점을 이용할 수 없어요"
 }

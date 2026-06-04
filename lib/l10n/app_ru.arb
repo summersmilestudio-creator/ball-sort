@@ -51,5 +51,9 @@
   "skinOcean": "Океан",
   "skinSunset": "Закат",
   "notifTitle": "Ball Sort Puzzle",
-  "notifBody": "Быстрая партия по сортировке шариков? 🎯"
+  "notifBody": "Быстрая партия по сортировке шариков? 🎯",
+  "coinsSectionTitle": "Монеты",
+  "watchAdForCoins": "Смотреть рекламу +{amount}",
+  "coinsAdded": "+{amount} монет!",
+  "storeUnavailable": "Магазин недоступен"
 }

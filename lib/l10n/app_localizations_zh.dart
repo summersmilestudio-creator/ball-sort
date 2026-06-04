@@ -193,4 +193,20 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get notifBody => '来局快速分球小游戏？🎯';
+
+  @override
+  String get coinsSectionTitle => '金币';
+
+  @override
+  String watchAdForCoins(int amount) {
+    return '观看广告 +$amount';
+  }
+
+  @override
+  String coinsAdded(int amount) {
+    return '+$amount 金币！';
+  }
+
+  @override
+  String get storeUnavailable => '商店不可用';
 }
