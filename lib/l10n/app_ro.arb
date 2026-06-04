@@ -1,0 +1,219 @@
+{
+  "@@locale": "ro",
+
+  "homeTagline": "Sortează bilele colorate în tuburi",
+  "@homeTagline": {},
+
+  "playButton": "JOACĂ",
+  "@playButton": {},
+
+  "continueLevel": "CONTINUĂ · Nivel {level}",
+  "@continueLevel": {
+    "placeholders": {
+      "level": { "type": "int" }
+    }
+  },
+
+  "chooseLevel": "Alege nivelul",
+  "@chooseLevel": {},
+
+  "record": "Record: {level}",
+  "@record": {
+    "placeholders": {
+      "level": { "type": "int" }
+    }
+  },
+
+  "removeAdsTitle": "Fără reclame",
+  "@removeAdsTitle": {},
+
+  "removeAdsBody": "Elimină bannerele și reclamele care te întrerup. O singură plată, pentru totdeauna.",
+  "@removeAdsBody": {},
+
+  "buyForPrice": "Cumpără • {price}",
+  "@buyForPrice": {
+    "placeholders": {
+      "price": { "type": "String" }
+    }
+  },
+
+  "restore": "Restaurează",
+  "@restore": {},
+
+  "later": "Mai târziu",
+  "@later": {},
+
+  "dailyBonusTitle": "🎁 Bonus zilnic",
+  "@dailyBonusTitle": {},
+
+  "coinsReward": "+{amount} monede",
+  "@coinsReward": {
+    "placeholders": {
+      "amount": { "type": "int" }
+    }
+  },
+
+  "streakDay": "Serie: {days} {days, plural, one{zi} other{zile}}",
+  "@streakDay": {
+    "placeholders": {
+      "days": { "type": "int" }
+    }
+  },
+
+  "claimReward": "Revendică 🪙",
+  "@claimReward": {},
+
+  "dailyAlreadyClaimed": "Bonusul de azi e luat. Revino mâine! 🔥 {streak} zile",
+  "@dailyAlreadyClaimed": {
+    "placeholders": {
+      "streak": { "type": "int" }
+    }
+  },
+
+  "levelTitle": "Nivel {level}",
+  "@levelTitle": {
+    "placeholders": {
+      "level": { "type": "int" }
+    }
+  },
+
+  "hintTooltip": "Indiciu ({cost} monede)",
+  "@hintTooltip": {
+    "placeholders": {
+      "cost": { "type": "int" }
+    }
+  },
+
+  "soundOn": "Pornește sunetul",
+  "@soundOn": {},
+
+  "soundOff": "Oprește sunetul",
+  "@soundOff": {},
+
+  "skipLevel": "Sari peste nivel 🎬",
+  "@skipLevel": {},
+
+  "resetCheckpoint": "Reset checkpoint 🎬",
+  "@resetCheckpoint": {},
+
+  "wonTitle": "🎉 Câștigat!",
+  "@wonTitle": {},
+
+  "levelComplete": "Nivel {level} complet!",
+  "@levelComplete": {
+    "placeholders": {
+      "level": { "type": "int" }
+    }
+  },
+
+  "back": "Înapoi",
+  "@back": {},
+
+  "bonusLevels": "+2 niveluri 🎁",
+  "@bonusLevels": {},
+
+  "next": "Următor",
+  "@next": {},
+
+  "checkpointReset": "🔄 Puzzle resetat din checkpoint!",
+  "@checkpointReset": {},
+
+  "bonusLevelsUnlocked": "🎁 +2 niveluri deblocate! Mergi până la {newMax}",
+  "@bonusLevelsUnlocked": {
+    "placeholders": {
+      "newMax": { "type": "int" }
+    }
+  },
+
+  "noUsefulMove": "Nicio mutare utilă acum 🤔",
+  "@noUsefulMove": {},
+
+  "hintTitle": "💡 Indiciu",
+  "@hintTitle": {},
+
+  "hintNotEnoughCoins": "Nu ai destule monede. Urmărești o reclamă pentru un indiciu gratuit?",
+  "@hintNotEnoughCoins": {},
+
+  "decline": "Renunț",
+  "@decline": {},
+
+  "watchAd": "Urmărește 🎬",
+  "@watchAd": {},
+
+  "shopTitle": "Magazin",
+  "@shopTitle": {},
+
+  "needMoreCoins": "Îți mai trebuie {amount} monede. Joacă niveluri ca să câștigi! 🪙",
+  "@needMoreCoins": {
+    "placeholders": {
+      "amount": { "type": "int" }
+    }
+  },
+
+  "buySkinTitle": "Cumperi \"{name}\"?",
+  "@buySkinTitle": {
+    "placeholders": {
+      "name": { "type": "String" }
+    }
+  },
+
+  "skinCost": "Cost: {cost} monede.",
+  "@skinCost": {
+    "placeholders": {
+      "cost": { "type": "int" }
+    }
+  },
+
+  "no": "Nu",
+  "@no": {},
+
+  "buy": "Cumpără",
+  "@buy": {},
+
+  "equipped": "Echipat ✓",
+  "@equipped": {},
+
+  "equip": "Echipează",
+  "@equip": {},
+
+  "skinPrice": "{cost} 🪙",
+  "@skinPrice": {
+    "placeholders": {
+      "cost": { "type": "int" }
+    }
+  },
+
+  "removeAdsHouseTitle": "Scapă de reclame",
+  "@removeAdsHouseTitle": {},
+
+  "removeAdsHouseBody": "Joacă fără bannere și fără reclame care te întrerup. O singură dată, pentru totdeauna.",
+  "@removeAdsHouseBody": {},
+
+  "removeAdsForPrice": "Elimină reclamele • {price}",
+  "@removeAdsForPrice": {
+    "placeholders": {
+      "price": { "type": "String" }
+    }
+  },
+
+  "skinDefault": "Clasic",
+  "@skinDefault": {},
+
+  "skinNeon": "Neon",
+  "@skinNeon": {},
+
+  "skinCandy": "Bomboane",
+  "@skinCandy": {},
+
+  "skinOcean": "Ocean",
+  "@skinOcean": {},
+
+  "skinSunset": "Apus",
+  "@skinSunset": {},
+
+  "notifTitle": "Ball Sort Puzzle",
+  "@notifTitle": {},
+
+  "notifBody": "O partidă rapidă de sortare bile? 🎯",
+  "@notifBody": {}
+}

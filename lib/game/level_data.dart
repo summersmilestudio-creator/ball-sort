@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'skins.dart';
 
 const kTubeCapacity = 5;
 
@@ -33,13 +34,14 @@ class BallLevel {
   BallLevel(this.tubes);
 
   static BallLevel generate(int level) {
-    final numColors = (3 + (level / 3).floor()).clamp(3, kBallColors.length);
+    final palette = activeSkin().balls;
+    final numColors = (3 + (level / 3).floor()).clamp(3, palette.length);
     final emptyTubes = level >= 4 ? 2 : 1;
 
     final all = <Color>[];
     for (var i = 0; i < numColors; i++) {
       for (var j = 0; j < kTubeCapacity; j++) {
-        all.add(kBallColors[i]);
+        all.add(palette[i]);
       }
     }
     all.shuffle(Random(level * 777 + 13));
@@ -55,6 +57,16 @@ class BallLevel {
   }
 
   BallLevel clone() => BallLevel(tubes.map((t) => t.clone()).toList());
+
+  bool canMove(int from, int to) {
+    if (from == to) return false;
+    final src = tubes[from];
+    final dst = tubes[to];
+    if (src.isEmpty) return false;
+    if (dst.isFull) return false;
+    if (dst.isNotEmpty && dst.top != src.top) return false;
+    return true;
+  }
 
   bool moveBall(int from, int to) {
     if (from == to) return false;
