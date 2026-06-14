@@ -40,13 +40,23 @@ class PurchaseService {
 
   static const _kNoAdsKey = 'noAds_ball';
 
-  static String _platformId(String logicalId) =>
-      Platform.isIOS ? '${logicalId}_ball' : logicalId;
+  /// The iOS "remove ads" product is configured in App Store Connect as
+  /// `ballsort_remove_ads` (coin packs keep the `_ball` suffix). Android keeps
+  /// the bare logical id.
+  static const String _iosNoAdsId = 'ballsort_remove_ads';
 
-  static String _logicalId(String platformId) =>
-      platformId.endsWith('_ball')
-          ? platformId.substring(0, platformId.length - 5)
-          : platformId;
+  static String _platformId(String logicalId) {
+    if (!Platform.isIOS) return logicalId;
+    if (logicalId == noAdsId) return _iosNoAdsId;
+    return '${logicalId}_ball';
+  }
+
+  static String _logicalId(String platformId) {
+    if (platformId == _iosNoAdsId) return noAdsId;
+    return platformId.endsWith('_ball')
+        ? platformId.substring(0, platformId.length - 5)
+        : platformId;
+  }
 
   static bool _isCoinPack(String logicalId) =>
       coinPacks.any((p) => p.id == logicalId);
