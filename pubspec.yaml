@@ -1,7 +1,7 @@
 name: ball_sort
 description: "Ball Sort Puzzle — sortează bilele colorate în tuburi"
 publish_to: 'none'
-version: 1.0.8+11
+version: 1.0.9+12
 environment:
   sdk: ^3.11.1
 

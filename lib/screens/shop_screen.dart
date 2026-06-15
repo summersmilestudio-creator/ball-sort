@@ -41,7 +41,7 @@ class _ShopScreenState extends State<ShopScreen> {
   Future<void> _onWatchAd() async {
     if (_busy) return;
     setState(() => _busy = true);
-    final earned = await AdsService.instance.showRewarded();
+    final earned = await AdsService.instance.showBonusAd();
     if (earned) {
       await MetaService.instance.addCoins(_adReward);
       AudioService.instance.coin();

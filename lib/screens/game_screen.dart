@@ -208,7 +208,7 @@ class _GameScreenState extends State<GameScreen>
   // ---- rewarded / persistence ----------------------------------------------
 
   Future<void> _watchAdForUndos() async {
-    final got = await AdsService.instance.showRewarded();
+    final got = await AdsService.instance.showBonusAd();
     if (!mounted || !got) return;
     setState(() {
       _level = _checkpoint.clone();
@@ -224,7 +224,7 @@ class _GameScreenState extends State<GameScreen>
   }
 
   Future<void> _watchAdToSkip() async {
-    final got = await AdsService.instance.showRewarded();
+    final got = await AdsService.instance.showBonusAd();
     if (!mounted || !got) return;
     _won = true;
     await _save();
@@ -234,7 +234,7 @@ class _GameScreenState extends State<GameScreen>
   }
 
   Future<void> _watchAdForBonusLevels() async {
-    final got = await AdsService.instance.showRewarded();
+    final got = await AdsService.instance.showBonusAd();
     if (!mounted || !got) return;
     final p = await SharedPreferences.getInstance();
     final cur = p.getInt('ballMax') ?? 1;
@@ -314,7 +314,7 @@ class _GameScreenState extends State<GameScreen>
       ),
     );
     if (watch != true) return;
-    final got = await AdsService.instance.showRewarded();
+    final got = await AdsService.instance.showBonusAd();
     if (!mounted || !got) return;
     final fresh = _findHint();
     if (fresh != null) _playHint(fresh);
